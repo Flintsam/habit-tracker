@@ -110,53 +110,6 @@ habit-tracker/
 └── .gitignore
 ```
 
-## 🚀 Getting Started
-
-### Clone the repository
-
-```bash
-git clone git@github.com:Flintsam/habit-tracker.git
-cd habit-tracker
-```
-
-### Create a virtual environment
-
-```bash
-python -m venv venv
-```
-
-### Activate it
-
-Windows PowerShell:
-
-```powershell
-.\venv\Scripts\Activate.ps1
-```
-
-### Install dependencies
-
-```bash
-pip install django djangorestframework
-```
-
-### Apply migrations
-
-```bash
-python manage.py migrate
-```
-
-### Start the development server
-
-```bash
-python manage.py runserver
-```
-
-Open:
-
-```text
-http://127.0.0.1:8000/
-```
-
 ## 📌 Project Status
 
 🚧 **Currently under development**
