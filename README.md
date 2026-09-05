@@ -1,5 +1,3 @@
-# habit-tracker
-django habit and mood tracker
 # Habit Tracker
 
 A Django-based habit and mood tracker built as part of my hands-on software development learning project.
