@@ -1,44 +1,131 @@
 # Habit Tracker
 
-A Django-based habit and mood tracker built as part of my hands-on software development learning project.
+A web-based habit and mood tracking application designed to help users build consistent habits, record their progress, and understand their daily patterns.
 
-## Current Progress
+## ✨ Features
 
-* Django project created
-* `habits` app created
-* SQLite database configured
-* Initial habit models created
-* Django migrations applied
-* Basic URL routing and view created
-* Project runs locally with Django's development server
-* Git repository initialized
+* Track daily habits
+* Record habit-specific activities
+* Track reading progress
+* Track running and exercise activities
+* Record gym sessions
+* Track daily mood
+* View and manage habit entries
+* Store habit data in a database
+* REST API for interacting with habit data
+* Automated testing
+* External API integration
 
-## Tech Stack
+## 🏋️ Supported Habits
+
+### Gym
+
+Record:
+
+* Date
+* Muscle group
+* Time spent
+* Notes
+
+### 📚 Reading
+
+Record:
+
+* Date
+* Book title
+* Pages read
+* Time spent
+* Notes
+
+### 🏃 Running
+
+Record:
+
+* Date
+* Distance
+* Time spent
+* Notes
+
+## 🛠️ Tech Stack
+
+### Backend
 
 * Python
 * Django
+* Django REST Framework
+
+### Frontend
+
+* HTML
+* CSS
+* JavaScript
+
+### Database
+
 * SQLite
-* Git & GitHub
 
-## Running Locally
+### Development
 
-1. Clone the repository:
+* Git
+* GitHub
+
+## 🏗️ Architecture
+
+The application follows a client-server architecture.
+
+```text
+Browser
+   ↓
+JavaScript
+   ↓
+REST API
+   ↓
+Django / Django REST Framework
+   ↓
+Database
+```
+
+The frontend communicates with the Django backend through REST API endpoints, which handle creating, retrieving, updating, and deleting habit data.
+
+## 📂 Project Structure
+
+```text
+habit-tracker/
+│
+├── config/
+│   ├── settings.py
+│   ├── urls.py
+│   ├── asgi.py
+│   └── wsgi.py
+│
+├── habits/
+│   ├── migrations/
+│   ├── models.py
+│   ├── views.py
+│   ├── admin.py
+│   └── tests.py
+│
+├── manage.py
+├── README.md
+└── .gitignore
+```
+
+## 🚀 Getting Started
+
+### Clone the repository
 
 ```bash
 git clone git@github.com:Flintsam/habit-tracker.git
-```
-
-2. Navigate into the project:
-
-```bash
 cd habit-tracker
 ```
 
-3. Create and activate a virtual environment:
+### Create a virtual environment
 
 ```bash
 python -m venv venv
 ```
+
+### Activate it
 
 Windows PowerShell:
 
@@ -46,41 +133,42 @@ Windows PowerShell:
 .\venv\Scripts\Activate.ps1
 ```
 
-4. Install dependencies:
+### Install dependencies
 
 ```bash
-pip install django
+pip install django djangorestframework
 ```
 
-5. Run migrations:
+### Apply migrations
 
 ```bash
 python manage.py migrate
 ```
 
-6. Start the development server:
+### Start the development server
 
 ```bash
 python manage.py runserver
 ```
 
-7. Open:
+Open:
 
 ```text
 http://127.0.0.1:8000/
 ```
 
-## Project Structure
+## 📌 Project Status
 
-```text
-habit-tracker/
-├── config/
-├── habits/
-├── manage.py
-├── .gitignore
-└── README.md
-```
+🚧 **Currently under development**
 
-## Status
+The project is being developed incrementally, with the backend API, frontend interface, database functionality, testing, and external API integration being added over time.
 
-🚧 Currently under development.
+## 🎯 Future Improvements
+
+* Habit statistics and visualizations
+* Improved mood tracking
+* Progress dashboards
+* More habit types
+* Better filtering and search
+* API authentication
+* Deployment to a production server
