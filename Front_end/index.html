@@ -10,86 +10,79 @@
 </head>
 
 <body>
+    <header>
+        <h1>🔥 Habit Tracker</h1>
+        <p>Build better habits, one day at a time.</p>
+        <div>
+            <p id="quote-text">Loading quote...</p>
+        </div>
+    </header>
+    <main>
 
-    <h1>Habit Tracker</h1>
+        <section>
+            <h2>Add Habit</h2>
 
-    <section>
-        <h2>Add Habit</h2>
+            <form id="habit-form">
+                <label for="habit-name">Habit name</label>
+                <input
+                    type="text"
+                    id="habit-name"
+                    placeholder="e.g., Exercise"
+                    required
+                >
 
-        <form id="habit-form">
-            <input
-                type="text"
-                id="habit-name"
-                placeholder="Enter habit name"
-                required
-            >
+                <button type="submit">Add Habit</button>
+            </form>
+        </section>
 
-            <button type="submit">Add Habit</button>
-        </form>
-    </section>
+        <section>
+            <h2>Your Habits</h2>
+            <ul id="habit-list"></ul>
+        </section>
 
-    <section>
-        <h2>Habits</h2>
+        <section>
+            <h2>Log Today's Progress</h2>
 
-        
+            <form id="entry-form">
 
-        <ul id="habit-list"></ul>
-    </section>
+                <label for="entry-habit">Habit</label>
+                <select id="entry-habit" required>
+                    <option value="">Select a habit</option>
+                </select>
 
-    <section>
-        <h2>Log Entry</h2>
+                <label for="entry-date">Date</label>
 
-        <form id="entry-form">
+                <input type="date" id="entry-date" required>
 
-            <label for="entry-habit">Habit:</label>
+                <label>
+                    <input type="checkbox" id="entry-completed">
+                    Completed
+                </label>
 
-            <select id="entry-habit" required>
-                <option value="">Select a habit</option>
-            </select>
+                <label for="entry-mood">Mood</label>
+                <select id="entry-mood" required>
+                    <option value="">Select mood</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
 
-            <br><br>
-            <label for="entry-date">Date:</label>
+                <br><br>
 
-            <input type="date" id="entry-date" required>
+                <button type="submit">Log Entry</button>
 
-            <br><br>
+            </form>
+        </section>
+        <section>
+            <h2>Recent Entries</h2>
+            <p id="entry-loading">Loading entries...</p>
 
-            <label>
-                <input type="checkbox" id="entry-completed">
-                Completed
-            </label>
+            <ul id="entry-list"></ul>
+        </section>
 
-            <br><br>
-
-            <label for="entry-mood">Mood:</label>
-
-            <select id="entry-mood" required>
-                <option value="">Select mood</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-
-            <br><br>
-
-            <button type="submit">Log Entry</button>
-
-        </form>
-    </section>
-    <section>
-        <h2>Entries</h2>
-        <p id="entry-loading">Loading entries...</p>
-
-        <ul id="entry-list"></ul>
-    </section>
-    <section>
-        <h2>Quote of the Day</h2>
-
-        <p id="quote-text">Loading quote...</p>
-        <p id="quote-author"></p>
-    </section>
+    </main>
     <script src="app.js"></script>
 
 </body>

@@ -139,6 +139,9 @@ entryForm.reset();
 loadEntries();
 });
 async function loadEntries() {
+    const entryList = document.getElementById("entry-list");
+
+    const entryLoading = document.getElementById("entry-loading");
 
     let response;
 
@@ -161,10 +164,6 @@ if (!response.ok) {
 }
 
     const data = await response.json();
-
-    const entryList = document.getElementById("entry-list");
-
-    const entryLoading = document.getElementById("entry-loading");
 
 entryLoading.textContent = "Loading entries...";
 
@@ -207,10 +206,7 @@ async function loadQuote() {
         const quote = data[0];
 
         document.getElementById("quote-text").textContent =
-            quote.quote;
-
-        document.getElementById("quote-author").textContent =
-            "- " + quote.author;
+            `"${quote.quote}"`;
 
     } catch (error) {
 
@@ -222,6 +218,7 @@ async function loadQuote() {
 }
 
 loadQuote();
+setInterval(loadQuote, 60 * 60 * 1000);
 
 async function deleteEntry(entryid) {
     let response;
@@ -248,4 +245,3 @@ async function deleteEntry(entryid) {
 
     
 }
-deleteEntry();

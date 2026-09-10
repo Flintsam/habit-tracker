@@ -138,7 +138,7 @@ def random_quote(request):
 
         quote_data = response.json()
         
-        cache.set("daily_quote", quote_data, 60 * 60 * 24)
+        cache.set("daily_quote", quote_data, 60 * 60 )
 
         return Response(quote_data)
     except requests.exceptions.RequestException as error:
