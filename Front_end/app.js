@@ -185,3 +185,37 @@ entryLoading.textContent = "Loading entries...";
 }
 
 loadEntries();
+async function loadQuote() {
+
+    try {
+        const response = await fetch(
+            "http://127.0.0.1:8000/api/randomquote/"
+        );
+
+        if (!response.ok) {
+            console.log("Server returned an error:", response.status);
+            document.getElementById("quote-text").textContent =
+                "Could not load quote.";
+            return;
+        }
+
+        const data = await response.json();
+
+        const quote = data[0];
+
+        document.getElementById("quote-text").textContent =
+            quote.quote;
+
+        document.getElementById("quote-author").textContent =
+            "- " + quote.author;
+
+    } catch (error) {
+
+        console.log("Request failed:", error);
+
+        document.getElementById("quote-text").textContent =
+            "Could not connect to the server.";
+    }
+}
+
+loadQuote();

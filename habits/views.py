@@ -1,5 +1,8 @@
 
 from django.http import HttpResponse
+import requests
+from django.conf import settings
+from django.core.cache import cache
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import Habit,Entry
@@ -114,3 +117,35 @@ def entry_detail(request, pk):
     if request.method == 'DELETE':
         entry.delete()
         return Response(status=204)
+    
+@api_view(['GET'])
+def random_quote(request):
+    cached_quote = cache.get("daily_quote")
+
+    if cached_quote:
+        return Response(cached_quote)
+
+
+    url = settings.API_NINJAS_URL
+
+    headers = {
+        "X-Api-Key": settings.API_NINJAS_KEY
+    }
+
+    try:
+        response = requests.get(url, headers=headers, timeout=5)
+        response.raise_for_status()
+
+        quote_data = response.json()
+        
+        cache.set("daily_quote", quote_data, 60 * 60 * 24)
+
+        return Response(quote_data)
+    except requests.exceptions.RequestException as error:
+        print("QUOTE API ERROR:", error)
+
+
+        return Response(
+            {"error": "Unable to fetch quote right now."},
+            status=503
+        )

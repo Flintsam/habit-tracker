@@ -1,6 +1,6 @@
 from django.db import models
 
-from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Habit(models.Model):
@@ -15,4 +15,9 @@ class Entry(models.Model):
     )
     date = models.DateField()
     completed = models.BooleanField(default=False)
-    mood = models.IntegerField()  # 1–5
+    mood = models.IntegerField(
+        validators=[
+            MinValueValidator(1),
+            MaxValueValidator(5)
+        ]
+    )
