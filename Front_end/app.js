@@ -177,11 +177,14 @@ entryLoading.textContent = "Loading entries...";
                 Habit ID: ${entry.habit} |
                 Completed: ${entry.completed} |
                 Mood: ${entry.mood}
+                <button onclick="deleteEntry(${entry.id})">Delete</button>
+
             </li>
         `;
 
     });
     entryLoading.textContent = "";
+
 }
 
 loadEntries();
@@ -219,3 +222,30 @@ async function loadQuote() {
 }
 
 loadQuote();
+
+async function deleteEntry(entryid) {
+    let response;
+
+    try {
+        response = await fetch(
+            `http://127.0.0.1:8000/api/entries/${entryid}/`,
+            {
+                method: "DELETE",
+            }
+        );
+    } catch (error) {
+        console.log("Request failed:", error);
+        alert("Could not connect to the server.");
+        return;
+    }
+    if (!response.ok) {
+        console.log("Server returned an error:", response.status);
+        alert("Could not delete the entry.");
+        return;
+    }
+    console.log("Entry deleted successfully.");
+    loadEntries();
+
+    
+}
+deleteEntry();
