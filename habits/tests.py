@@ -22,6 +22,16 @@ class EntryModelTest(TestCase):
 
 
 class EntryAPITest(TestCase):
+    def test_get_habits(self):
+        Habit.objects.create(name="Gym")
+
+        response = self.client.get("/api/habits/")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.data), 1)
+        self.assertEqual(response.data[0]["name"], "Gym")
+    
+    
 
     def test_create_entry_api(self):
         habit = Habit.objects.create(name="Gym")

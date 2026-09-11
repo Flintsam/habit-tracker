@@ -1,89 +1,389 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="en" data-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Habit Tracker</title>
+<title>Habit Tracker</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>">
+
+<link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
-    <header>
-        <h1>🔥 Habit Tracker</h1>
-        <p>Build better habits, one day at a time.</p>
-        <div>
-            <p id="quote-text">Loading quote...</p>
-        </div>
-    </header>
-    <main>
 
-        <section>
-            <h2>Add Habit</h2>
+<header class="topbar">
 
-            <form id="habit-form">
-                <label for="habit-name">Habit name</label>
+<div class="brand">
+    <span class="brand-icon">🔥</span>
+    <span class="brand-name">Habit<span class="accent">Tracker</span></span>
+</div>
+
+<nav class="nav">
+    <span class="nav-link active">🏠 Home</span>
+</nav>
+
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme">
+    <span class="icon-sun">☀️</span>
+    <span class="toggle-track">
+        <span class="toggle-thumb"></span>
+    </span>
+    <span class="icon-moon">🌙</span>
+</button>
+
+</header>
+
+<main class="page">
+    <div id="messageBox"></div>
+
+<section class="banner">
+
+    <div class="banner-text">
+        <h1>👋 Good to see you!</h1>
+
+        <p class="quote" id="quoteText">
+            "Small steps every day lead to big changes."
+        </p>
+    </div>
+
+    <div class="banner-art" aria-hidden="true">
+        🔥
+    </div>
+
+</section>
+
+
+<div class="grid">
+
+
+    <div class="col col-left">
+
+
+        <!-- ADD HABIT -->
+        <section class="card">
+
+            <h2>➕ Add New Habit</h2>
+
+            <form id="habitForm" class="row-form">
+
                 <input
                     type="text"
-                    id="habit-name"
-                    placeholder="e.g., Exercise"
+                    id="habitName"
+                    placeholder="Habit name"
+                >
+
+                <button type="submit" class="btn btn-primary">
+                    + Add Habit
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- YOUR HABITS -->
+        <section class="card">
+
+            <div class="card-header">
+
+                <h2>📋 Your Habits</h2>
+
+                <span class="badge-count">
+                    <span id="habitCount">0</span> total
+                </span>
+
+            </div>
+
+
+            <!-- JavaScript will insert habits here -->
+            <ul class="habit-list" id="habitList">
+            </ul>
+
+        </section>
+
+
+        <!-- RECENT ENTRIES -->
+        <section class="card">
+
+            <h2>📅 Recent Entries</h2>
+
+            <table class="entries-table">
+
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Habit</th>
+                        <th>Mood</th>
+                        <th>Completed</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <!-- JavaScript will insert entries here -->
+                <tbody id="recentEntriesBody">
+                </tbody>
+
+            </table>
+
+
+            <!-- We'll use this properly in Chunk 3 -->
+            <p class="empty-state" id="entriesEmptyState" hidden>
+                No entries yet.
+            </p>
+
+        </section>
+
+    </div>
+
+
+    <!-- RIGHT COLUMN -->
+    <div class="col col-right">
+
+
+        <!-- LOG ENTRY -->
+        <section class="card">
+
+            <h2>✏️ Log Entry</h2>
+
+            <form id="entryForm">
+
+
+                <label for="entryHabitSelect">
+                    Select Habit
+                </label>
+
+                <select id="entryHabitSelect" required>
+
+                    <option value="">
+                        Choose a habit
+                    </option>
+
+                </select>
+
+
+                <label for="entryDate">
+                    Date
+                </label>
+
+                <input
+                    type="date"
+                    id="entryDate"
                     required
                 >
 
-                <button type="submit">Add Habit</button>
-            </form>
-        </section>
-
-        <section>
-            <h2>Your Habits</h2>
-            <ul id="habit-list"></ul>
-        </section>
-
-        <section>
-            <h2>Log Today's Progress</h2>
-
-            <form id="entry-form">
-
-                <label for="entry-habit">Habit</label>
-                <select id="entry-habit" required>
-                    <option value="">Select a habit</option>
-                </select>
-
-                <label for="entry-date">Date</label>
-
-                <input type="date" id="entry-date" required>
 
                 <label>
-                    <input type="checkbox" id="entry-completed">
-                    Completed
+                    Mood (1-5)
                 </label>
 
-                <label for="entry-mood">Mood</label>
-                <select id="entry-mood" required>
-                    <option value="">Select mood</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
+                <div class="mood-selector">
 
-                <br><br>
+                    <input
+                        type="radio"
+                        name="mood"
+                        value="1"
+                        id="mood1"
+                        class="mood-radio"
+                    >
+                    <label for="mood1">1</label>
 
-                <button type="submit">Log Entry</button>
+
+                    <input
+                        type="radio"
+                        name="mood"
+                        value="2"
+                        id="mood2"
+                        class="mood-radio"
+                    >
+                    <label for="mood2">2</label>
+
+
+                    <input
+                        type="radio"
+                        name="mood"
+                        value="3"
+                        id="mood3"
+                        class="mood-radio"
+                    >
+                    <label for="mood3">3</label>
+
+
+                    <input
+                        type="radio"
+                        name="mood"
+                        value="4"
+                        id="mood4"
+                        class="mood-radio"
+                        checked
+                    >
+                    <label for="mood4">4</label>
+
+
+                    <input
+                        type="radio"
+                        name="mood"
+                        value="5"
+                        id="mood5"
+                        class="mood-radio"
+                    >
+                    <label for="mood5">5</label>
+
+                </div>
+
+
+                <div class="toggle-row">
+
+                    <span>Completed</span>
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="entryCompleted"
+                            checked
+                        >
+
+                        <span class="switch-slider"></span>
+
+                    </label>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary btn-block"
+                >
+                    + Log Entry
+                </button>
 
             </form>
-        </section>
-        <section>
-            <h2>Recent Entries</h2>
-            <p id="entry-loading">Loading entries...</p>
 
-            <ul id="entry-list"></ul>
         </section>
 
-    </main>
-    <script src="app.js"></script>
+
+        <!-- TODAY'S PROGRESS -->
+        <section class="card">
+
+            <h2>🔥 Today's Progress</h2>
+
+            <div class="rings">
+
+                <div class="ring-wrap">
+
+                    <div class="ring" style="--pct:80">
+                        <span class="ring-value">80%</span>
+                    </div>
+
+                    <p class="ring-label">
+                        Gym<br>
+                        <small>4/5</small>
+                    </p>
+
+                </div>
+
+
+                <div class="ring-wrap">
+
+                    <div class="ring" style="--pct:60">
+                        <span class="ring-value">60%</span>
+                    </div>
+
+                    <p class="ring-label">
+                        Reading<br>
+                        <small>3/5</small>
+                    </p>
+
+                </div>
+
+
+                <div class="ring-wrap">
+
+                    <div class="ring" style="--pct:40">
+                        <span class="ring-value">40%</span>
+                    </div>
+
+                    <p class="ring-label">
+                        Running<br>
+                        <small>2/5</small>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</div>
+
+
+</main>
+
+<script src="app.js"></script>
+
+<!-- Theme toggle + quote timer -->
+
+<script>
+
+    var themeToggle = document.getElementById('themeToggle');
+
+    var root = document.documentElement;
+
+    var savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme) {
+        root.setAttribute('data-theme', savedTheme);
+    }
+
+
+    themeToggle.addEventListener('click', function () {
+
+        var next =
+            root.getAttribute('data-theme') === 'light'
+                ? 'dark'
+                : 'light';
+
+        root.setAttribute('data-theme', next);
+
+        localStorage.setItem('theme', next);
+
+    });
+
+
+    var secondsLeft = 60 * 60;
+
+    var timerEl = document.getElementById('quoteTimer');
+
+
+    setInterval(function () {
+
+        secondsLeft =
+            secondsLeft > 0
+                ? secondsLeft - 1
+                : 60 * 60;
+
+        var m =
+            String(Math.floor(secondsLeft / 60))
+                .padStart(2, '0');
+
+        var s =
+            String(secondsLeft % 60)
+                .padStart(2, '0');
+
+
+        if (timerEl) {
+            timerEl.textContent = m + ':' + s;
+        }
+
+    }, 1000);
+
+</script>
 
 </body>
 </html>
